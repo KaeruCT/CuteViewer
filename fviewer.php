@@ -3,7 +3,7 @@
 	//	By Kaeru~
 	
 	//	Configurable stuff
-	$pass = sha1('pleasechangeme');// Change the password.
+	$pass = sha1('changeme');// Change the password.
 	$hiddenDirs = array('.', '..', '.htaccess'); // Add your own hidden directories
 	$fileDir = 'resources/'; // If you the additional resources to another directory, change this variable
 	
@@ -16,12 +16,11 @@
 	$backUrl = '';
 	
 	$colors = array(
-		'5ff' => 'Cyan',
+		'6c6' => 'Green'
 		'a4a' => 'Purple',
 		'2af' => 'Blue',
 		'f55' => 'Red',
 		'333' => 'Grey',
-		'6c6' => 'Green'
 	);
 
 	$select = '
@@ -29,7 +28,10 @@
 	
 	$mdir = end(explode('/', dirname(__file__)));
 	
-	$dir = $opendir = isset($_GET['d'])?stripslashes(trim($_GET['d'], '/..')):'.';
+	$dir = isset($_GET['d'])?stripslashes(trim($_GET['d'])):'.';
+	
+	$dir = $opendir = preg_replace('%\.+|/{1,}%', '', $dir);
+	
 	$dir = $opendir = $dir?$dir:'.';
 	
 	if(in_array(substr(str_replace('/', '', $dir), 0, strlen($mdir)), $hiddenDirs))

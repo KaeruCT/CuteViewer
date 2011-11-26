@@ -192,6 +192,9 @@ a#showlog{
 	display: none;
 	width: 100%;
 }
+#log a{
+	color: <?php echo $c1[8]; ?> !important;
+}
 #foot{
 	font-size: 0.9em;
 	color: <?php echo $c1[1]; ?>;

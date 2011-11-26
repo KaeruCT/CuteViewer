@@ -3,6 +3,7 @@ Most features require JavaScript enabled to function properly.
 
 ## Features
 - Password protection for deletion/renaming of files
+- The script is constrained to the directory it's put in and directories below it.
 - View file/directory listings
 - Hiding files/directories from being listed
 - Rename files/directories
