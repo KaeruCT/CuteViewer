@@ -533,7 +533,7 @@
 	<div id="push"></div>
 </div>
 <div id="foot">
-	<p>cuteViewer 1.5 &copy; <?php echo $copyd; ?> Kaeru~</p>
+	<p><a href="https://github.com/KaeruCT/CuteViewer">CuteViewer 2.0</a> &copy; <?php echo $copyd; ?> Ernesto Villarreal~</p>
 </div>
 </body>
 </html>
