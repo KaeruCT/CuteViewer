@@ -393,7 +393,7 @@
 				}
 			}
 			
-			$backUrl = '?d='.$dir;
+			$backUrl = 'javascript:history.back();';
 
 			break;
 		
