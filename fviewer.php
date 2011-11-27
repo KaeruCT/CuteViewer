@@ -99,7 +99,7 @@
 	function show_thumbnail($filename){
 		$imgfiles = array('.gif', 'jpeg', '.jpg', '.png', 'apng', '.svg', '.bmp');
 		
-		return in_array(strtolower(substr($furl, -4)), $imgfiles)
+		return in_array(strtolower(substr($filename, -4)), $imgfiles)
 			&& filesize($filename) < 1024000;
 	}
 	
