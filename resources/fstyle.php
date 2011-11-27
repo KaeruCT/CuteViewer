@@ -146,12 +146,17 @@ table#list tr{
 }
 table#list th{
 	padding: 4px;
-	color: <?php echo $c1[8]; ?>;
-	background: url('thead.png') repeat-x;
 }
 table#list td{
 	padding: 4px;
 	color: <?php echo $c1[3]; ?>;
+}
+table#list tr.d2{
+	background: <?php echo $c1[3]; ?> url('thead.png') repeat-x;
+	color: <?php echo $c1[8]; ?>;
+	font-weight: bold;
+	font-size: 1.1em;
+	padding: 4px;
 }
 table#list tr.d1{
 	background: <?php echo $c1[6]; ?> url('tr1.png') repeat-x;
@@ -159,19 +164,22 @@ table#list tr.d1{
 table#list tr.d0{
 	background: <?php echo $c1[7]; ?> url('tr1.png') repeat-x;
 }
-table#list tr:hover{
+tr.d0, tr.d1:hover{
 	background: <?php echo $c1[5]; ?> url('tr2.png') repeat-x;
 }
 table#list th{
 	cursor: pointer;
 }
-table#list tr.d2{
-	background: <?php echo $c1[4]; ?>;
-	color: <?php echo $c1[1]; ?>;
+/*	Divs	*/
+.msg{
+	background: <?php echo $c1[7]; ?>;
 	font-weight: bold;
 	font-size: 1.1em;
+	padding: 20px;
+	margin: 2px 8px;
+	color: <?php echo $c1[2]; ?>;
+	border: <?php echo $c1[3]; ?> 1px solid;
 }
-/*	Divs	*/
 div#main, div.box{
 	padding: 4px;
 }

@@ -1,6 +1,25 @@
 <?php 
-
-	//	By Kaeru~
+/*
+   +-----------------+------------------------------------------------------------+
+   |  Script         | CuteViewer                                                 |
+   |  Author         | Ernesto Villarreal                                         |
+   |  Last Modified  | November 2011                                              |
+   +-----------------+------------------------------------------------------------+
+   |  This program is free software; you can redistribute it and/or               |
+   |  modify it under the terms of the GNU General Public License                 |
+   |  as published by the Free Software Foundation; either version 2              |
+   |  of the License, or (at your option) any later version.                      |
+   |                                                                              |
+   |  This program is distributed in the hope that it will be useful,             |
+   |  but WITHOUT ANY WARRANTY; without even the implied warranty of              |
+   |  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               |
+   |  GNU General Public License for more details.                                |
+   |                                                                              |
+   |  You should have received a copy of the GNU General Public License           |
+   |  along with this program; if not, write to the Free Software                 |
+   |  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. |
+   +------------------------------------------------------------------------------+
+*/
 	
 	//	Configurable stuff
 	$pass = sha1('changeme');// Change the password.
@@ -32,7 +51,8 @@
 	
 	$dir = isset($_GET['d'])?stripslashes(trim($_GET['d'])):'.';
 	
-	$dir = $opendir = preg_replace('%\.+|/{1,}%', '', $dir);
+	$dir = preg_replace('%\.+%', '', $dir);
+	$dir = $opendir = preg_replace('%/{2,}%', '', $dir);
 	
 	$dir = $opendir = $dir?$dir:'.';
 	
@@ -186,7 +206,6 @@
 		
 			$fcount = $dcount = $i = 0;
 			$out = '';
-			
 			if(file_exists($opendir))
 			{
 				$noback = true;
@@ -220,8 +239,8 @@
 				$ptitle =  mkdirname(false).$title;
 				$title = mkdirname(true).$title;
 				$opt = $l?'<a href="?m=upload&amp;d='.$dir.'">Upload files to '.mkdirname(false).'</a><br /><a class="create-dir" href="#">Create directory</a>':'';
-				$out =	'<table id="list" cellpadding="0">
-	'.					'	'.($out?('<thead>
+				$out =	'
+	'.					'	'.($out?('<table id="list" cellpadding="0"><thead>
 	'.					'		<tr class="d2">
 	'.					'			<th class="h" title="Sort by file/directory name...">
 	'.					'				File/directory name
@@ -233,13 +252,12 @@
 	'.					'	</thead>
 	'.					'	<tbody>
 	'.					'		'.$out.'
-	'.					'	</tbody>'):'
-	'.					'	<tr class="d2">
-	'.					'		<td>
+	'.					'	</tbody></table>'):'
+	'.					'	<div class="msg">
 	'.					'			There are no files in this directory.
-	'.					'		</td>
-	'.					'	</tr>').'
-	'.					'</table>';
+	'.					'		</div>
+	'.					'	').'
+	'.					'';
 				$js .=	'$("a.delete").click(function(){
 	'.					'	return confirm("Are you sure?\nOnce you delete this, it will be gone forever!");
 	'.					'});
@@ -268,7 +286,7 @@
 			else
 			{
 				$title = $ptitle = 'Error: not found';
-				$out = 'Directory not found.';
+				$out = '<div class="msg">Directory not found.</div>';
 				$backUrl = 'javascript:history.back();';
 			}
 			
@@ -283,7 +301,7 @@
 			elseif(!is_dir($dir))
 			{
 				$title = $ptitle = 'Error: not found';
-				$out = 'Directory not found.';
+				$out = '<div class="msg">Directory not found.</div>';
 			}
 			else
 			{
@@ -323,6 +341,7 @@
 			}
 			
 			$backUrl = '?d='.$dir;
+			$out = '<div class="msg">'.$out.'</div>';
 
 			break;
 			
@@ -337,7 +356,7 @@
 				$filenum = $filenum?intval($_POST['file_num']):1;
 				
 				if(!$filenum)
-					$out = 'An error occured.';
+					$out = 'Invalid files.';
 				else
 				{
 					$out = '';
@@ -358,6 +377,7 @@
 				}		
 			}
 			
+			$out = '<div class="msg">'.$out.'</div>';
 			$backUrl = '?d='.$dir;
 			
 			break;
@@ -396,6 +416,7 @@
 				}
 			}
 			
+			$out = '<div class="msg">'.$out.'</div>';
 			$backUrl = 'javascript:history.back();';
 
 			break;
@@ -468,12 +489,13 @@
 			}
 			
 			$backUrl = '?d='.$name;
+			$out = '<div class="msg">'.$out.'</div>';
 			
 			break;
 	}
 	
 	$out =	'
-	'.$out.(isset($noback)?'':'<br /><a href="'.($_SERVER['PHP_SELF']).$backUrl.'">Go back.</a>').'
+	'.$out.(isset($noback)?'':'<br /><a href="'.$backUrl.'">Go back.</a>').'
 ';
 	$log =	'
 	'.($opt?('<div class="imp left pl">
