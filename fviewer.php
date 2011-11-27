@@ -16,11 +16,13 @@
 	$backUrl = '';
 	
 	$colors = array(
-		'6c6' => 'Green',
-		'a4a' => 'Purple',
-		'2af' => 'Blue',
-		'f55' => 'Red',
-		'333' => 'Grey'
+		'afa' => 'Green',
+		'faf' => 'Purple',
+		'aff' => 'Cyan',
+		'aaf' => 'Blue',
+		'faa' => 'Red',
+		'ffa' => 'Gold',
+		'fff' => 'Silver'
 	);
 
 	$select = '
