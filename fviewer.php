@@ -269,6 +269,7 @@
 			{
 				$title = $ptitle = 'Error: not found';
 				$out = 'Directory not found.';
+				$backUrl = 'javascript:history.back();';
 			}
 			
 			break;
