@@ -62,7 +62,7 @@
 	$mode = isset($_GET['m'])?stripslashes($_GET['m']):'view';
 	$l = $_SESSION['pass']==$pass;
 	
-	$c = isset($_GET['c'])?$_GET['c']:'5ff';
+	$c = isset($_GET['c'])?$_GET['c']:'afa';
 	$color = isset($_COOKIE['cl'])?$_COOKIE['cl']:$c;
 	
 	if(isset($_GET['c'])){
@@ -546,7 +546,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
 	<meta name="Author" content="Kaeru" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $fileDir; ?>fstyle.php?c=<?php echo $color; ?>" />
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo $fileDir; ?>jquery-1.6.2.min.js"></script>
 	<script type="text/javascript" src="<?php echo $fileDir; ?>tablesorter.js"></script>
 	<?php echo $js; ?>
 </head>
