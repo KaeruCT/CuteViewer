@@ -60,7 +60,12 @@
 		$dir = $opendir = '.';
 	
 	$mode = isset($_GET['m'])?stripslashes($_GET['m']):'view';
-	$l = $_SESSION['pass']==$pass;
+	
+	if(isset($_SESSION['pass'])){
+		$l = $_SESSION['pass']==$pass;
+	}else{
+		$l = false;
+	}
 	
 	$c = isset($_GET['c'])?$_GET['c']:'afa';
 	$color = isset($_COOKIE['cl'])?$_COOKIE['cl']:$c;
