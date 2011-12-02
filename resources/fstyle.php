@@ -1,9 +1,11 @@
 <?php 
 	#	By Kaeru~
+	
 	header('Content-type: text/css');
 	
 	$color = isset($_GET['c'])?$_GET['c']:'#58f';
 	$inversec = isset($_GET['inversec']);
+	$is_handheld = isset($_GET['handheld']);
 	
 	function hex2rgb($c)
 	{
@@ -90,6 +92,18 @@
 	
 	if($inversec)
 		$c1 = invert($c1);
+		
+	if($is_handheld){
+		$font_size = 20;
+		$link_padding = 4;
+		$td_padding = 12;
+		$th_padding = 4;
+	}else{
+		$font_size = 12;
+		$link_padding = 0;
+		$td_padding = 4;
+		$th_padding = 4;
+	}
 ?>
 * {
 	margin: 0;
@@ -109,11 +123,12 @@ html, body {
 body{
 	background: <?php echo $c1[8]; ?> url('bg.png');
 	font-family: "DejaVu Sans", sans-serif;
-	font-size: 12px;
+	font-size: <?php echo $font_size; ?>px;
 }
 /*	Links	*/
 a{
 	text-decoration: underline;
+	padding: <?php echo $link_padding; ?>px;
 }
 a:link{
 	color: <?php echo $c1[0]; ?>;
@@ -138,34 +153,33 @@ a#more, a#less{
 }
 /*	Table, rows, cells	*/
 table#list{
-	width: 100%;
 	border-collapse: collapse;
+	width: 100%;
 }
 table#list tr{
 	border: <?php echo $c1[3]; ?> 1px solid;
 }
 table#list th{
-	padding: 4px;
+	padding: <?php echo $th_padding; ?>px;
 }
 table#list td{
-	padding: 4px;
 	color: <?php echo $c1[3]; ?>;
+	padding: <?php echo $td_padding; ?>px;
 }
 table#list tr.d2{
-	background: <?php echo $c1[3]; ?> url('thead.png') repeat-x;
+	background: <?php echo $c1[3]; ?> url('thead.png') bottom repeat-x;
 	color: <?php echo $c1[8]; ?>;
 	font-weight: bold;
 	font-size: 1.1em;
-	padding: 4px;
 }
 table#list tr.d1{
-	background: <?php echo $c1[6]; ?> url('tr1.png') repeat-x;
+	background: <?php echo $c1[6]; ?> url('tr1.png') bottom repeat-x;
 }
 table#list tr.d0{
-	background: <?php echo $c1[7]; ?> url('tr1.png') repeat-x;
+	background: <?php echo $c1[7]; ?> url('tr1.png') bottom repeat-x;
 }
 tr.d0, tr.d1:hover{
-	background: <?php echo $c1[5]; ?> url('tr2.png') repeat-x;
+	background: <?php echo $c1[5]; ?> url('tr2.png') bottom repeat-x;
 }
 table#list th{
 	cursor: pointer;
@@ -180,7 +194,11 @@ table#list th{
 	color: <?php echo $c1[2]; ?>;
 	border: <?php echo $c1[3]; ?> 1px solid;
 }
-div#main, div.box{
+div#main{
+	padding: 0;
+	margin: 0;
+}
+div.box{
 	padding: 4px;
 }
 a#showlog{
@@ -236,3 +254,24 @@ div#main input[type="file"] {
 abbr{
 	border-bottom: <?php echo $c1[2]; ?> 1px dotted;
 }
+h1{
+	font-size: 1.5em;
+	display: block;
+}
+<?php
+	if(!$is_handheld){
+?>
+.file-name{
+	width: auto;
+}
+.date{
+	width: 200px;
+	text-align: center;
+}
+.file-size{
+	width: 70px;
+	text-align: center;
+}
+<?php
+	}
+?>
