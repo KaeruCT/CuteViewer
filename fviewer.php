@@ -22,7 +22,7 @@
 */
 	
 	//	Configurable stuff
-	$pass = sha1('changeme');// Change the password.
+	$pass = sha1('pleasechangeme');// Change the password.
 	$hiddenDirs = array('.', '..', '.htaccess'); // Add your own hidden directories
 	$fileDir = 'resources/'; // If you the additional resources to another directory, change this variable
 	
@@ -83,14 +83,14 @@
 	$select .= '			
 	'.	'		</select>';
 	
-	$log =	'<div class="left pr pl">
+	$log =		'<div class="left pr pl imp">
 	'.		'		'.($l?'You are logged in!':'You are not logged in!
 	'.		'		<form action="?m=login&d='.$dir.'" method="post">
 	'.		'			Password: <input type="password" name="pass" />&nbsp;
 	'.		'			<input type="submit" value="Log in!" />
 	'.		'		</form>').'
 	'.		'	</div>
-	'.		'	<div class="right pl pr">
+	'.		'	<div class="right pl pr imp">
 	'.		'		Color: '.$select.'
 	'.		'	</div>';
 	
@@ -503,14 +503,12 @@
 	'.$out.(isset($noback)?'':'<br /><a href="'.$backUrl.'">Go back.</a>').'
 ';
 	$log =	'
-	'.($opt?('<div class="imp left pl">
+	'.(!empty($opt)?'<div class="imp left pl">
 	'.		'	'.$opt.'
 	'.		'</div>
 	'.		'<div class="imp right pr">
 	'.		'	'.$log.'
-	'.		'</div>'):('<div class="imp">
-	'.		'	'.$log.'
-	'.		'</div>')).'
+	'.		'</div>':$log).'
 ';
 	$js =	'<script type="text/javascript"><!--
 	'.		'var files = 1, fadeOut = 0;
@@ -550,6 +548,7 @@
 	<title><?php echo $ptitle; ?></title> 
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
 	<meta name="Author" content="Kaeru" />
+	<link rel="stylesheet" type="text/css" media="handheld" href="<?php echo $fileDir; ?>fstyle.php?c=<?php echo $color; ?>&handheld=1" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $fileDir; ?>fstyle.php?c=<?php echo $color; ?>" />
 	<script type="text/javascript" src="<?php echo $fileDir; ?>jquery-1.6.2.min.js"></script>
 	<script type="text/javascript" src="<?php echo $fileDir; ?>tablesorter.js"></script>
