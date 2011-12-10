@@ -53,6 +53,7 @@
 	
 	$dir = preg_replace('%\.+%', '', $dir);
 	$dir = $opendir = preg_replace('%/{2,}%', '', $dir);
+	$dir = $opendir = preg_replace('%^/%', '', $dir);
 	
 	$dir = $opendir = $dir?$dir:'.';
 	
